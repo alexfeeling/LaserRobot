@@ -22,7 +22,7 @@ public class SwitchTower : MonoBehaviour
             if (Targets != null)
             {
                 for (int i = 0; i < Targets.Length; i++)
-                    Targets[i].SetSwitch(TriggerFlag);
+                    Targets[i]?.SetSwitch(TriggerFlag);
             }
             if (Head != null)
                 Head.DOPunchScale(Vector3.one * 1.2f, 0.5f).OnComplete(() => Head.localScale = Vector3.one);//.SetEase(Ease.OutElastic);

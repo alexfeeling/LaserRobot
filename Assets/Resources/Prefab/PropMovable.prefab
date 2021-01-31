@@ -44,7 +44,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.9811321, g: 0.9547143, b: 0.47668213, a: 1}
   m_Intensity: 3
-  m_Range: 5
+  m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 4747532151726427561}
   - component: {fileID: 4747532151726427560}
   m_Layer: 10
-  m_Name: PropGear
+  m_Name: PropMovable
   m_TagString: Gear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Model: {fileID: 4747532151303886315}
+  propType: 0
 --- !u!135 &4747532151726427561
 SphereCollider:
   m_ObjectHideFlags: 0
