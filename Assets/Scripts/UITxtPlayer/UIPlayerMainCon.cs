@@ -103,11 +103,11 @@ public class UIPlayerMainCon : MonoBehaviour
     void Update()
     {
 
-        //测试------------------------------------
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            UIPlayerMainCon.getInstance().playText(1);
-        }
+        ////测试------------------------------------
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    UIPlayerMainCon.getInstance().playText(4);
+        //}
 
 
         //播放
