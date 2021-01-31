@@ -8,7 +8,7 @@ public class PlayerDesdination : MonoBehaviour
 
     void Start()
     {
-        transform.DORotate(new Vector3(0, 90, 0), 1f, RotateMode.LocalAxisAdd).SetLoops(-1);
+        transform.DORotate(new Vector3(0, 90, 0), 1f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
     }
 
     private void OnTriggerEnter(Collider other)

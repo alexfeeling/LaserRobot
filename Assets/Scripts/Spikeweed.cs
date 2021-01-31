@@ -39,14 +39,18 @@ public class Spikeweed : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
+    private void OnTriggerStay(Collider other)
+    { 
         if (_isOn)
         {
-            var player = other.gameObject.GetComponent<Robot.RobotPlayer>();
-            if (player != null)
+            if (GameManager.Instance.Status == GameManager.GameStatus.Playing)
             {
-                player.BeAttack();
+                var player = other.gameObject.GetComponent<Robot.RobotPlayer>();
+                if (player != null)
+                {
+                    player.BeAttack();
+                }
+
             }
         }
     }

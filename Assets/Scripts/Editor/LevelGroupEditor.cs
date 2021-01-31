@@ -16,7 +16,7 @@ public class LevelGroupEditor : Editor
         }
         if (GUILayout.Button("生成基本地面"))
         {
-            Clear();
+            ClearFloor();
 
             var levelGroup = (LevelGroup)target;
             var startX = -levelGroup.width >> 1;
@@ -33,13 +33,15 @@ public class LevelGroupEditor : Editor
                 for (int j = startY; j < endY; j++)
                 {
                     var pos = new Vector3(i, 0, j);
-                    var floor = Instantiate(levelGroup.P_Floor, floorGo.transform);
+                    var floor = (Transform)PrefabUtility.InstantiatePrefab(levelGroup.P_Floor, floorGo.transform);
+                    //var floor = Instantiate(levelGroup.P_Floor, floorGo.transform);
                     floor.position = pos;
-                    floor.name = "Floor_" + i + "_" + j;
+                    floor.name = "Floor[" + i + "," + j + "]";
                     if (i == startX || i == endX - 1 || j == startY || j == endY - 1)
                     {
-                        var wall = Instantiate(levelGroup.P_Wall, wallGo.transform);
-                        wall.name = "Wall_" + i + "_" + j;
+                        var wall = (Transform)PrefabUtility.InstantiatePrefab(levelGroup.P_Wall, wallGo.transform);
+                        //var wall = Instantiate(levelGroup.P_Wall, wallGo.transform);
+                        wall.name = "Wall[" + i + "," + j + "]";
                         wall.position = pos;
                     }
                 }
@@ -50,7 +52,7 @@ public class LevelGroupEditor : Editor
     private void Clear()
     {
         var levelGroup = (LevelGroup)target;
-        
+
         var cnt = levelGroup.transform.childCount;
         for (int i = cnt - 1; i >= 0; i--)
         {
@@ -65,12 +67,12 @@ public class LevelGroupEditor : Editor
         var wallNode = levelGroup.transform.Find("WallNode");
         if (floorNode != null)
         {
-            DestroyImmediate(floorNode);
+            DestroyImmediate(floorNode.gameObject);
         }
 
         if (wallNode != null)
         {
-            DestroyImmediate(wallNode);
+            DestroyImmediate(wallNode.gameObject);
         }
     }
 

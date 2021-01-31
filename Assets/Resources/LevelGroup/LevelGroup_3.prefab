@@ -32381,7 +32381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 25
   height: 25
-  level: 1
+  level: 3
   P_Floor: {fileID: 832819875820968402, guid: 0c7b39ef7fa129f43ab855f227d8a4ff, type: 3}
   P_Wall: {fileID: 4962745333863168032, guid: c26bdb4ee6f0bf94eabd8e8666238818, type: 3}
 --- !u!1 &2713439856289938902

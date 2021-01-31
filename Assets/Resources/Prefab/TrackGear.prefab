@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1674303101320783160, guid: 8021e2496c3b9ef43b3060f2afc06122, type: 3}
+  - {fileID: 2100000, guid: 9552268ead851d64595a087d1f9b0056, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -142,7 +142,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1674303101320783160, guid: 8021e2496c3b9ef43b3060f2afc06122, type: 3}
+  - {fileID: 2100000, guid: 9552268ead851d64595a087d1f9b0056, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
   MoveSpeed: 1
   IdleTime: 1
   IsLoop: 0
-  ChagenSpeed: -1
+  IsSwitch: 0
 --- !u!135 &5615979714401308422
 SphereCollider:
   m_ObjectHideFlags: 0
