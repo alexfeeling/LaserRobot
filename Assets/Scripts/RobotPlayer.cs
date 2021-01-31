@@ -9,8 +9,8 @@ namespace Robot
 
         public enum LaserColor
         {
-            Blue,
-            Red,
+            Blue,//蓝光反射
+            Red,//红光推动
         }
 
         public Transform P_Raser;
@@ -39,9 +39,37 @@ namespace Robot
 
         public float LaserSpeed = 40f;
 
+        public bool isRedLaserOpen = false;
+
         private void Start()
         {
             Character.MaxStableMoveSpeed = MoveSpeed;
+        }
+
+        public void GetRedLaser()
+        {
+            isRedLaserOpen = true;
+        }
+
+        public void AddProp(Gear gear)
+        {
+            if (gear.propType == Gear.PropType.RedLaser)
+            {
+                isRedLaserOpen = true;
+            }
+            else if (gear.propType == Gear.PropType.LaserLengthen)
+            {
+                LimitMaxRaserLength += 20;
+            }
+            else if (gear.propType == Gear.PropType.Movable)
+            {
+                MoveSpeed += 2;
+                Character.MaxStableMoveSpeed = MoveSpeed;
+            }
+            else if (gear.propType == Gear.PropType.Jump)
+            {
+                Character.LockJump = false;
+            }
         }
 
         void Update()
@@ -231,29 +259,40 @@ namespace Robot
             }
         }
 
-        private void OnGUI()
-        {
-            var angle = transform.rotation.eulerAngles.y;
-            GUI.Label(new Rect(100, 100, 100, 20), "Angle:" + angle.ToString("#.##"));
-        }
+        //private void OnGUI()
+        //{
+        //    var angle = transform.rotation.eulerAngles.y;
+        //    GUI.Label(new Rect(100, 100, 100, 20), "Angle:" + angle.ToString("#.##"));
+        //}
 
         private void UpdateRaserControll()
         {
             if (!_isShooting)
             {
                 //右键切换激光颜色
-                if (Input.GetMouseButtonDown(1))
+                if (isRedLaserOpen)
                 {
-                    if (laserColor == LaserColor.Blue)
+                    if (Input.GetMouseButtonDown(1))
                     {
-                        laserColor = LaserColor.Red;
-                        RaserMat.SetColor("_Color", RedColor * 4);
+                        if (laserColor == LaserColor.Blue)
+                        {
+                            laserColor = LaserColor.Red;
+                            RaserMat.SetColor("_Color", RedColor * 4);
+                            RaserLine.endWidth = 0.3f;
+                        }
+                        else
+                        {
+                            laserColor = LaserColor.Blue;
+                            RaserMat.SetColor("_Color", BlueColor * 4);
+                            RaserLine.endWidth = 0.1f;
+                        }
                     }
-                    else
-                    {
-                        laserColor = LaserColor.Blue;
-                        RaserMat.SetColor("_Color", BlueColor * 4);
-                    }
+                }
+                else if (laserColor == LaserColor.Red)
+                {
+                    laserColor = LaserColor.Blue;
+                    RaserMat.SetColor("_Color", BlueColor * 4);
+                    RaserLine.endWidth = 0.1f;
                 }
             }
 
@@ -306,14 +345,22 @@ namespace Robot
                         var gear = go.GetComponent<Gear>();
                         gear.HitByRaser();
                     }
-                    else if (go.CompareTag("Block"))
+                    else if (go.CompareTag("Block") || go.CompareTag("Pushable"))
                     {
                         var inv = lookDir.normalized;
                         var nor = hit.normal.normalized;
                         //R = I - 2.0 * dot(N, I) * N;
                         var r = inv - 2f * Vector3.Dot(nor, inv) * nor;
 
-                        ShootRaseLine(desPot, r, distance + length, index + 1);
+                        if (laserColor == LaserColor.Blue)
+                        {
+                            ShootRaseLine(desPot, r, distance + length, index + 1);
+                        }
+                        else if (go.CompareTag("Pushable"))
+                        {
+                            var box = go.GetComponent<Box>();
+                            box.BePush(transform.position);
+                        }
                     }
                     else if (go.CompareTag("Player"))
                     {

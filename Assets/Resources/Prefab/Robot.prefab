@@ -265,7 +265,7 @@ MonoBehaviour:
   layerRaserHit:
     serializedVersion: 2
     m_Bits: 3072
-  raserColor: 0
+  laserColor: 0
   RaserShooter: {fileID: 2084089033032939888}
   RaserMat: {fileID: 2100000, guid: 86046bb9196dfeb4d802a0189d821b43, type: 2}
   BlueColor: {r: 0.16509432, g: 0.6394046, b: 1, a: 1}
@@ -273,9 +273,11 @@ MonoBehaviour:
   RaserLine: {fileID: 2084089031716389170}
   IsFreeRotate: 1
   IsFreeMove: 1
-  MoveSpeed: 4
+  MoveSpeed: 1
   Character: {fileID: 2084089032654468015}
-  LimitMaxRaserLength: 40
+  LaserSpeed: 30
+  isRedLaserOpen: 0
+  LimitMaxRaserLength: 7
 --- !u!54 &2084089032654468013
 Rigidbody:
   m_ObjectHideFlags: 0
