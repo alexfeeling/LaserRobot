@@ -109,8 +109,9 @@ public class TextCon : MonoBehaviour
 
         for( ; i <= txtNumber; ++i)
         {
+            if (i >= transform.childCount) break;
             var panel = transform.GetChild(i).GetComponent<Transform>();
-            if (!panel) return;
+            
 
             List<Text> tlist = new List<Text>();
             List<Image> ilist = new List<Image>();
