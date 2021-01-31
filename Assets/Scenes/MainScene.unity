@@ -213,6 +213,8 @@ MonoBehaviour:
   Effect_Pick: {fileID: 8300000, guid: a9614588d133cdb428c8d446d6a24cdf, type: 3}
   Effect_AddGear: {fileID: 8300000, guid: cc26442ddcc0cee45a87d4391d16ab1b, type: 3}
   Effect_Explode: {fileID: 8300000, guid: ab4388e4e2b26314db6bba5f16c6568d, type: 3}
+  Effect_HitTrigger: {fileID: 8300000, guid: 37abd99014c695a49b5a1e196e44579e, type: 3}
+  Effect_SwitchLaser: {fileID: 8300000, guid: c2fdf30b6ac1e9045a938728aa970873, type: 3}
 --- !u!4 &399779662
 Transform:
   m_ObjectHideFlags: 0

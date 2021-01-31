@@ -36,7 +36,7 @@ public class GameStartUI : MonoBehaviour
         WinContent.SetActive(false);
 
         AudioManager.Insatnce.StopMusic();
-        AudioManager.Insatnce.PlaySound(AudioManager.Insatnce.Effect_GameOver);
+        //AudioManager.Insatnce.PlaySound(AudioManager.Insatnce.Effect_GameOver);
     }
 
     public void SetWin()
@@ -44,7 +44,7 @@ public class GameStartUI : MonoBehaviour
         StartContent.SetActive(false);
         OverContent.SetActive(false);
         WinContent.SetActive(true);
-
+        UIPlayerMainCon.getInstance().playText(4);
 
         AudioManager.Insatnce.PlayMusic(AudioManager.Insatnce.MusicGameWin);
     }

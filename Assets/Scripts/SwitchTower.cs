@@ -17,6 +17,8 @@ public class SwitchTower : MonoBehaviour
     {
         if (_timeCount <= 0)
         {
+            AudioManager.Insatnce.PlaySound(AudioManager.Insatnce.Effect_HitTrigger);
+
             _timeCount = SwitchTime;
             TriggerFlag = !TriggerFlag;
             if (Targets != null)

@@ -80,6 +80,7 @@ namespace Robot
             if (gear.propType == Gear.PropType.RedLaser)
             {
                 isRedLaserOpen = true;
+                UIPlayerMainCon.getInstance().playText(3);
             }
             else if (gear.propType == Gear.PropType.LaserLengthen)
             {
@@ -100,6 +101,8 @@ namespace Robot
         void Update()
         {
             if (GameManager.Instance.Status != GameManager.GameStatus.Playing) return;
+
+            if (UIPlayerMainCon.getInstance().IsOnPlay) return;
 
             UpdateDirection();
             //UpdateMove();
@@ -318,7 +321,7 @@ namespace Robot
         //    var angle = transform.rotation.eulerAngles.y;
         //    GUI.Label(new Rect(100, 100, 100, 20), "Angle:" + angle.ToString("#.##"));
         //}
-
+        private float _lastSwitchTime = 0;
         private void UpdateRaserControll()
         {
             if (!_isShooting)
@@ -328,6 +331,13 @@ namespace Robot
                 {
                     if (Input.GetMouseButtonDown(1))
                     {
+                        var time = Time.time;
+                        if (time - _lastSwitchTime < 0.5f)
+                        {
+                            return;
+                        }
+                        _lastSwitchTime = time;
+                        AudioManager.Insatnce.PlaySound(AudioManager.Insatnce.Effect_SwitchLaser);
                         if (laserColor == LaserColor.Blue)
                         {
                             laserColor = LaserColor.Red;
@@ -369,7 +379,7 @@ namespace Robot
             }
             if (Input.GetMouseButton(0))
             {
-                _maxRaserLength = Mathf.Min(LimitMaxRaserLength + AddedLaserLangth, 
+                _maxRaserLength = Mathf.Min(LimitMaxRaserLength + AddedLaserLangth,
                     _maxRaserLength + LaserSpeed * Time.deltaTime);
                 ShootRaseLine(RaserShooter.position, transform.forward, 0, 0);
             }

@@ -22,7 +22,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip Effect_Pick;
     public AudioClip Effect_AddGear;
     public AudioClip Effect_Explode;
-
+    public AudioClip Effect_HitTrigger;
+    public AudioClip Effect_SwitchLaser;
+    
     void Awake()
     {
         Insatnce = this;

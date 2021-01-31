@@ -14,7 +14,7 @@ public class UIPlayerMainCon : MonoBehaviour
         if (_Instance) return _Instance;
         else
         {
-            Debug.Log("错误的获取时机!!!"); 
+            Debug.Log("错误的获取时机!!!");
             return null;
         }
     }
@@ -23,7 +23,7 @@ public class UIPlayerMainCon : MonoBehaviour
 
     bool isOnPlay = false;//是否正在播放
 
-    public bool IsOnPlay { get; }
+    public bool IsOnPlay => isOnPlay;
 
     TextCon ptext;//正在播放的文本
 
@@ -42,7 +42,7 @@ public class UIPlayerMainCon : MonoBehaviour
 
         var panle = Instantiate(Resources.Load<RectTransform>("UIText/Text_" + id));
 
-        if(!panle)
+        if (!panle)
         {
             Debug.Log("未找到文本!!!");
             return;
@@ -97,8 +97,8 @@ public class UIPlayerMainCon : MonoBehaviour
         }
     }
 
-    
-    
+
+
     // Update is called once per frame
     void Update()
     {
