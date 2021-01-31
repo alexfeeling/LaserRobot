@@ -286,6 +286,61 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &399779660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 399779662}
+  - component: {fileID: 399779661}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &399779661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399779660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d4416e960d6ba4c92f038f887cf818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MusicPlayer: {fileID: 0}
+  SoundPlayer: {fileID: 0}
+  MusicStartPanel: {fileID: 8300000, guid: 3912563bc055bdd459e6abac6056d1d2, type: 3}
+  MusicGame: {fileID: 8300000, guid: 7566ce0ed3801244085fca6ef11db3d4, type: 3}
+  MusicGameWin: {fileID: 8300000, guid: e3a92bc7efef89e4f85edba906aba05b, type: 3}
+  Effect_Move: {fileID: 8300000, guid: 5203c84e931d1824aa9d54444a9435c8, type: 3}
+  Effect_LaserBlue: {fileID: 8300000, guid: 7b1d97f8d60b6fe46a013cac55911e82, type: 3}
+  Effect_LaserRed: {fileID: 8300000, guid: 96930e2e3fbadae40880aaa75af8b177, type: 3}
+  Effect_GameOver: {fileID: 8300000, guid: b8d871a16bccddf418a2a55d876c874b, type: 3}
+  Effect_Pick: {fileID: 8300000, guid: a9614588d133cdb428c8d446d6a24cdf, type: 3}
+  Effect_AddGear: {fileID: 8300000, guid: cc26442ddcc0cee45a87d4391d16ab1b, type: 3}
+  Effect_Explode: {fileID: 8300000, guid: ab4388e4e2b26314db6bba5f16c6568d, type: 3}
+--- !u!4 &399779662
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399779660}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &549253264
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +433,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &577712648
 GameObject:
@@ -508,7 +563,7 @@ RectTransform:
   m_Children:
   - {fileID: 740150779}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -716,7 +771,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &819776306
 GameObject:
@@ -1086,7 +1141,7 @@ Transform:
   m_LocalScale: {x: 29.707346, y: 29.707333, z: 29.707333}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1396133279
 GameObject:
@@ -1117,7 +1172,7 @@ Transform:
   m_Children:
   - {fileID: 1956611319}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1414337749
 GameObject:
@@ -1313,7 +1368,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1552545880 stripped
 GameObject:
@@ -1513,7 +1568,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1926496883
 GameObject:
@@ -1782,7 +1837,7 @@ PrefabInstance:
     - target: {fileID: 2084089032654468008, guid: 40b4688e746161a42ac22b0f3fe2b5ef,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2084089032654468008, guid: 40b4688e746161a42ac22b0f3fe2b5ef,
         type: 3}

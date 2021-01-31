@@ -33,6 +33,7 @@ public class Gear : MonoBehaviour
 
     public void HitByRaser()
     {
+        AudioManager.Insatnce.PlaySound(AudioManager.Insatnce.Effect_Pick);
         var collider = GetComponent<Collider>();
         Destroy(collider);
         transform.DOPunchScale(Vector3.one * 2, 0.4f).OnComplete(() =>

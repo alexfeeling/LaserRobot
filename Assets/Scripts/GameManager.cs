@@ -95,12 +95,14 @@ public class GameManager : MonoBehaviour
             playerBorn.transform.position, playerBorn.transform.rotation);
 
         Destroy(playerBorn.gameObject);
+
     }
 
     public void GameStart()
     {
         Status = GameStatus.Playing;
-
+        AudioManager.Insatnce.PlayMusic(AudioManager.Insatnce.MusicGame);
+        PlayerRobot.GetComponent<RobotPlayer>().ResetPlayer();
         LoadLevel(StartLevel);
     }
 
@@ -116,6 +118,7 @@ public class GameManager : MonoBehaviour
         StartUI.gameObject.SetActive(true);
         StartUI.SetOver();
         PlayerRobot.GetComponent<RobotCharacterController>().StopMove();
+
     }
 
     public void GameWin()
@@ -123,6 +126,8 @@ public class GameManager : MonoBehaviour
         Status = GameStatus.Win;
         StartUI.gameObject.SetActive(true);
         StartUI.SetWin();
+
+        
     }
 
     public void Exit()

@@ -15,6 +15,8 @@ namespace Robot
 
         public Transform P_Raser;
 
+        public AudioSource moveAudioSource;
+
         public LayerMask layerGround;
         public LayerMask layerRaserHit;
 
@@ -41,18 +43,23 @@ namespace Robot
 
         public bool isRedLaserOpen = false;
 
+        public float LimitMaxRaserLength = 20f;
+        public float AddedLaserLangth = 0f;
         private void Start()
         {
+            ResetPlayer();
+        }
+
+        public void ResetPlayer()
+        {
+            isRedLaserOpen = false;
             Character.MaxStableMoveSpeed = MoveSpeed;
+            Character.LockJump = true;
+            AddedLaserLangth = 0f;
 
             laserColor = LaserColor.Blue;
             RaserMat.SetColor("_Color", BlueColor * 4);
             RaserLine.endWidth = 0.1f;
-        }
-
-        public void GetRedLaser()
-        {
-            isRedLaserOpen = true;
         }
 
         public void AddProp(Gear gear)
@@ -63,17 +70,18 @@ namespace Robot
             }
             else if (gear.propType == Gear.PropType.LaserLengthen)
             {
-                LimitMaxRaserLength += 20;
+                AddedLaserLangth += 20;
             }
             else if (gear.propType == Gear.PropType.Movable)
             {
-                MoveSpeed += 2;
-                Character.MaxStableMoveSpeed = MoveSpeed;
+                Character.MaxStableMoveSpeed += 2;
             }
             else if (gear.propType == Gear.PropType.Jump)
             {
                 Character.LockJump = false;
             }
+
+            AudioManager.Insatnce.PlaySound(AudioManager.Insatnce.Effect_AddGear);
         }
 
         void Update()
@@ -104,6 +112,35 @@ namespace Robot
 
             // Apply inputs to character
             Character.SetInputs(ref characterInputs);
+
+            if (Character.Motor.Velocity.sqrMagnitude > 0)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
+        private void PlayMoveSound(bool isMoving)
+        {
+            if (isMoving)
+            {
+                if (!_isMoving)
+                {
+                    _isMoving = true;
+                    moveAudioSource.Play();
+                }
+            }
+            else
+            {
+                if (!_isMoving)
+                {
+                    _isMoving = false;
+                    moveAudioSource.Stop();
+                }
+            }
         }
 
         private const int MAX_MOVE_COMMAND_COUNT = 5;
@@ -308,10 +345,19 @@ namespace Robot
                 //ShootRaser(RaserShooter.position, transform.forward, 0);
                 //StartCoroutine(CorShootRaseLine(RaserShooter.position, transform.forward, 0));
                 _maxRaserLength = 0.1f;
+                if (laserColor == LaserColor.Blue)
+                {
+                    AudioManager.Insatnce.PlaySound(AudioManager.Insatnce.Effect_LaserBlue);
+                }
+                else
+                {
+                    AudioManager.Insatnce.PlaySound(AudioManager.Insatnce.Effect_LaserRed);
+                }
             }
             if (Input.GetMouseButton(0))
             {
-                _maxRaserLength = Mathf.Min(LimitMaxRaserLength, _maxRaserLength + LaserSpeed * Time.deltaTime);
+                _maxRaserLength = Mathf.Min(LimitMaxRaserLength + AddedLaserLangth, 
+                    _maxRaserLength + LaserSpeed * Time.deltaTime);
                 ShootRaseLine(RaserShooter.position, transform.forward, 0, 0);
             }
             else if (Input.GetMouseButtonUp(0))
@@ -319,11 +365,9 @@ namespace Robot
                 DestroyRasers();
             }
         }
-        public float LimitMaxRaserLength = 20f;
         private float _maxRaserLength = 0;
         private void ShootRaseLine(Vector3 startPos, Vector3 lookDir, float distance, int index)
         {
-            //if (index >= 10) return;
 
             Ray ray = new Ray(startPos, lookDir);
             if (Physics.Raycast(ray, out var hit, Mathf.Infinity, layerRaserHit, QueryTriggerInteraction.Ignore))
@@ -393,6 +437,7 @@ namespace Robot
 
         public void BeAttack()
         {
+            AudioManager.Insatnce.PlaySound(AudioManager.Insatnce.Effect_Explode);
             GameManager.Instance.GameOver();
         }
 
