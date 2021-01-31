@@ -571,6 +571,7 @@ GameObject:
   - component: {fileID: 2465589963987295528}
   - component: {fileID: 3070737671189665257}
   - component: {fileID: 2025631818021694876}
+  - component: {fileID: 1567624343098626047}
   m_Layer: 10
   m_Name: GearTrap
   m_TagString: Trap
@@ -696,6 +697,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad8264095c96e54e9eb5cdb2a02dd2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1567624343098626047
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5858320107935044759}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99, y: 0.6076044, z: 0.99}
+  m_Center: {x: -0.00000023841858, y: 0.10380292, z: -0.0000010728836}
 --- !u!1 &6474558873523118697
 GameObject:
   m_ObjectHideFlags: 0

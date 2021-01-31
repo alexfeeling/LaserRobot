@@ -3,6 +3,7 @@ using UnityEditor;
 
 namespace KinematicCharacterController
 {
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     public class ReadOnlyPropertyDrawer : PropertyDrawer
     {
@@ -18,4 +19,5 @@ namespace KinematicCharacterController
             GUI.enabled = true;
         }
     }
+#endif
 }
