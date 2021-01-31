@@ -120,7 +120,7 @@ LineRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 3
-    numCapVertices: 0
+    numCapVertices: 5
     alignment: 0
     textureMode: 0
     shadowBias: 0.5
@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   P_Raser: {fileID: 30435870712886588, guid: 21ca1eca2dffdc2489054254eabd7cc2, type: 3}
+  moveAudioSource: {fileID: 0}
   layerGround:
     serializedVersion: 2
     m_Bits: 512
@@ -278,6 +279,7 @@ MonoBehaviour:
   LaserSpeed: 30
   isRedLaserOpen: 0
   LimitMaxRaserLength: 7
+  AddedLaserLangth: 0
 --- !u!54 &2084089032654468013
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -483,8 +485,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084089032782223601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.846, z: 0.217}
-  m_LocalScale: {x: 0.08994879, y: 0.09041542, z: 0.08097629}
+  m_LocalPosition: {x: 0, y: 0.846, z: 0.246}
+  m_LocalScale: {x: 0.21512555, y: 0.21624158, z: 0.19366653}
   m_Children: []
   m_Father: {fileID: 2084089032654468008}
   m_RootOrder: 2

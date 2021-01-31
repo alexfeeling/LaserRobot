@@ -19,9 +19,9 @@ public class LevelGroupEditor : Editor
             ClearFloor();
 
             var levelGroup = (LevelGroup)target;
-            var startX = -levelGroup.width >> 1;
+            var startX =  - (levelGroup.width >> 1);
             var endX = startX + levelGroup.width;
-            var startY = -levelGroup.height >> 1;
+            var startY =  - (levelGroup.height >> 1);
             var endY = startY + levelGroup.height;
             var floorGo = new GameObject("FloorNode");
             var wallGo = new GameObject("WallNode");

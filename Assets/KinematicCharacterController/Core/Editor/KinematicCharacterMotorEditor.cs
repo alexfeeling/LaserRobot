@@ -5,6 +5,7 @@ using UnityEditor;
 
 namespace KinematicCharacterController
 {
+#if UNITY_EDITOR
     [CustomEditor(typeof(KinematicCharacterMotor))]
     public class KinematicCharacterMotorEditor : Editor
     {
@@ -25,4 +26,5 @@ namespace KinematicCharacterController
             }
         }
     }
+#endif
 }

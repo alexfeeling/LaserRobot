@@ -86,7 +86,7 @@ public class TrackGear : MonoBehaviour
             Gizmos.color = _drawColor;
             for (int i = 0; i < Path.Length; i++)
             {
-                var pos = Path[i] + transform.parent.position;
+                var pos = transform.parent.TransformPoint(Path[i]);
                 pos.y += 0.25f;
                 Gizmos.DrawSphere(pos, 0.25f);
             }
@@ -95,8 +95,8 @@ public class TrackGear : MonoBehaviour
             {
                 if (i > 0)
                 {
-                    var lastPos = Path[i - 1] + transform.parent.position;
-                    var thisPos = Path[i] + transform.parent.position;
+                    var lastPos = transform.parent.TransformPoint(Path[i - 1]);
+                    var thisPos = transform.parent.TransformPoint(Path[i]);;
                     lastPos.y += 0.25f;
                     thisPos.y += 0.25f;
                     Gizmos.DrawLine(lastPos, thisPos);
