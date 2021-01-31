@@ -15,6 +15,12 @@ public class GameStartUI : MonoBehaviour
         GameManager.Instance.GameStart();
     }
 
+    public void OnClickContinue()
+    {
+        gameObject.SetActive(false);
+        GameManager.Instance.GameContinue();
+    }
+
     public void OnClickQuit()
     {
         GameManager.Instance.Exit();

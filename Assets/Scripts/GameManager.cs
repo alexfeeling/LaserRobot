@@ -96,14 +96,23 @@ public class GameManager : MonoBehaviour
 
         Destroy(playerBorn.gameObject);
 
+        PlayerRobot.GetComponent<RobotPlayer>().RecordPlayerData();
     }
 
     public void GameStart()
     {
         Status = GameStatus.Playing;
         AudioManager.Insatnce.PlayMusic(AudioManager.Insatnce.MusicGame);
-        PlayerRobot.GetComponent<RobotPlayer>().ResetPlayer();
+        PlayerRobot.GetComponent<RobotPlayer>().SetPlayerDefault();
         LoadLevel(StartLevel);
+    }
+
+    public void GameContinue()
+    {
+        Status = GameStatus.Playing;
+        AudioManager.Insatnce.PlayMusic(AudioManager.Insatnce.MusicGame);
+        PlayerRobot.GetComponent<RobotPlayer>().ResetPlayer();
+        LoadLevel(CurrLevelGroup.level);
     }
 
     public void LevelSucc()
@@ -123,6 +132,8 @@ public class GameManager : MonoBehaviour
 
     public void GameWin()
     {
+        PlayerRobot.GetComponent<RobotCharacterController>().StopMove();
+
         Status = GameStatus.Win;
         StartUI.gameObject.SetActive(true);
         StartUI.SetWin();

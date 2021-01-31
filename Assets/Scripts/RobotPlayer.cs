@@ -5,15 +5,16 @@ using UnityEngine;
 namespace Robot
 {
 
-    public class PlayerData
+    public struct PlayerData
     {
 
-        public bool isRedLaserOpen = false;
+        public bool isRedLaserOpen;
 
-        public float AddedLaserLangth = 0f;
+        public float AddedLaserLangth;
 
-        public float MoveSpeed = 1f;
+        public float MoveSpeed;
 
+        public bool LockJump;
     }
 
     public class RobotPlayer : MonoBehaviour
@@ -42,57 +43,89 @@ namespace Robot
 
         public LineRenderer RaserLine;
 
+        public PlayerData playerData = new PlayerData();
+        public PlayerData lastPlayerData;
+
         public bool IsFreeRotate;
 
         public bool IsFreeMove;
 
         [Header("移动速度")]
-        public float MoveSpeed = 1f;
+        public float DefaultMoveSpeed = 2f;
 
         public RobotCharacterController Character;
 
         public float LaserSpeed = 40f;
 
-        public bool isRedLaserOpen = false;
+        //public bool isRedLaserOpen = false;
 
         public float LimitMaxRaserLength = 20f;
-        public float AddedLaserLangth = 0f;
+        //public float AddedLaserLangth = 0f;
 
         private void Start()
         {
-            ResetPlayer();
+            //ResetPlayer();
+        }
+
+        public void SetPlayerDefault()
+        {
+            lastPlayerData = new PlayerData()
+            {
+                isRedLaserOpen = false,
+                MoveSpeed = this.DefaultMoveSpeed,
+                LockJump = true,
+                AddedLaserLangth = 0,
+            };
+            playerData = lastPlayerData;
         }
 
         public void ResetPlayer()
         {
-            isRedLaserOpen = false;
-            Character.MaxStableMoveSpeed = MoveSpeed;
+            playerData = lastPlayerData;
+            //isRedLaserOpen = false;
+            Character.MaxStableMoveSpeed = playerData.MoveSpeed;
             Character.LockJump = true;
-            AddedLaserLangth = 0f;
+            //AddedLaserLangth = 0f;
 
             laserColor = LaserColor.Blue;
             RaserMat.SetColor("_Color", BlueColor * 4);
             RaserLine.endWidth = 0.1f;
         }
 
+        public void RecordPlayerData()
+        {
+            lastPlayerData = playerData;
+        }
+
+        private void ShowRedLaserText()
+        {
+            UIPlayerMainCon.getInstance().playText(3);
+        }
         public void AddProp(Gear gear)
         {
             if (gear.propType == Gear.PropType.RedLaser)
             {
-                isRedLaserOpen = true;
-                UIPlayerMainCon.getInstance().playText(3);
+                playerData.isRedLaserOpen = true;
+
+                Text3DAdder.getInstance().addText("获得红色激光能力", new Color(1, 0.1f, 0.1f));
+
+                Invoke("ShowRedLaserText", 1f);
             }
             else if (gear.propType == Gear.PropType.LaserLengthen)
             {
-                AddedLaserLangth += 20;
+                playerData.AddedLaserLangth += 20;
+                Text3DAdder.getInstance().addText("射线距离加长", new Color(0, 0.7f, 1f));
             }
             else if (gear.propType == Gear.PropType.Movable)
             {
-                Character.MaxStableMoveSpeed += 2;
+                playerData.MoveSpeed += 3;
+                Character.MaxStableMoveSpeed = playerData.MoveSpeed;
+                Text3DAdder.getInstance().addText("移动速度加快", new Color(1, 0.7f, 0f));
             }
             else if (gear.propType == Gear.PropType.Jump)
             {
                 Character.LockJump = false;
+                Text3DAdder.getInstance().addText("获得跳跃能力", new Color(0, 1f, 0.1f));
             }
 
             AudioManager.Insatnce.PlaySound(AudioManager.Insatnce.Effect_AddGear);
@@ -252,7 +285,7 @@ namespace Robot
             }
             if (_isMoving)
             {
-                transform.position += dir * MoveSpeed * Time.deltaTime;
+                transform.position += dir * DefaultMoveSpeed * Time.deltaTime;
             }
         }
 
@@ -327,7 +360,7 @@ namespace Robot
             if (!_isShooting)
             {
                 //右键切换激光颜色
-                if (isRedLaserOpen)
+                if (playerData.isRedLaserOpen)
                 {
                     if (Input.GetMouseButtonDown(1))
                     {
@@ -379,15 +412,20 @@ namespace Robot
             }
             if (Input.GetMouseButton(0))
             {
-                _maxRaserLength = Mathf.Min(LimitMaxRaserLength + AddedLaserLangth,
-                    _maxRaserLength + LaserSpeed * Time.deltaTime);
-                ShootRaseLine(RaserShooter.position, transform.forward, 0, 0);
+                if (_maxRaserLength > 0)
+                {
+                    _maxRaserLength = Mathf.Min(LimitMaxRaserLength + playerData.AddedLaserLangth,
+                        _maxRaserLength + LaserSpeed * Time.deltaTime);
+                    ShootRaseLine(RaserShooter.position, transform.forward, 0, 0);
+                }
             }
             else if (Input.GetMouseButtonUp(0))
             {
+                _maxRaserLength = 0;
                 DestroyRasers();
             }
         }
+
         private float _maxRaserLength = 0;
         private void ShootRaseLine(Vector3 startPos, Vector3 lookDir, float distance, int index)
         {

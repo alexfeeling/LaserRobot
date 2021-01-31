@@ -38,7 +38,7 @@ public class UIPlayerMainCon : MonoBehaviour
     {
         if (isOnPlay) return;
         isOnPlay = true;
-
+        GameManager.Instance.PlayerRobot.GetComponent<Robot.RobotCharacterController>().StopMove();
 
         var panle = Instantiate(Resources.Load<RectTransform>("UIText/Text_" + id));
 
