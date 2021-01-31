@@ -78,6 +78,10 @@ public class UIPlayerMainCon : MonoBehaviour
     }
 
 
+    public void showTeam()
+    {
+        UIPlayerMainCon.getInstance().playText(0);
+    }
 
 
 
