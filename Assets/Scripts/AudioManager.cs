@@ -23,14 +23,20 @@ public class AudioManager : MonoBehaviour
     public AudioClip Effect_AddGear;
     public AudioClip Effect_Explode;
 
-    void Start()
+    void Awake()
     {
         Insatnce = this;
         MusicPlayer = gameObject.AddComponent<AudioSource>();
         MusicPlayer.playOnAwake = false;
         MusicPlayer.volume = 0.25f;
+        MusicPlayer.loop = true;
         SoundPlayer = gameObject.AddComponent<AudioSource>();
         SoundPlayer.playOnAwake = false;
+    }
+
+    private void OnDestroy()
+    {
+        Insatnce = null;
     }
 
     //播放音乐

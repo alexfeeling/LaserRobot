@@ -4,6 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Robot
 {
+
+    public class PlayerData
+    {
+
+        public bool isRedLaserOpen = false;
+
+        public float AddedLaserLangth = 0f;
+
+        public float MoveSpeed = 1f;
+
+    }
+
     public class RobotPlayer : MonoBehaviour
     {
 
@@ -45,6 +57,7 @@ namespace Robot
 
         public float LimitMaxRaserLength = 20f;
         public float AddedLaserLangth = 0f;
+
         private void Start()
         {
             ResetPlayer();
