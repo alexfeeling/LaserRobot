@@ -52,16 +52,19 @@ public class TrackGear : MonoBehaviour
     {
         if (Path != null && Path.Length >= 2)
         {
+            var reversePath = new Vector3[Path.Length];
+            for (int i = 0; i < Path.Length; i++)
+                reversePath[i] = Path[Path.Length - i - 1];
             var totalTime = 0f;
-            for (int i = 1; i < Path.Length; i++)
+            for (int i = 1; i < reversePath.Length; i++)
             {
-                var lastPos = Path[i - 1];
-                var thisPos = Path[i];
+                var lastPos = reversePath[i - 1];
+                var thisPos = reversePath[i];
                 var length = (thisPos - lastPos).magnitude;
                 totalTime += length / MoveSpeed;
             }
 
-            transform.DOLocalPath(Path, totalTime, PathType.Linear).SetEase(Ease.Linear).OnComplete(MoveForward).SetDelay(IdleTime).PlayBackwards();
+            transform.DOLocalPath(reversePath, totalTime, PathType.Linear).SetEase(Ease.Linear).OnComplete(MoveForward).SetDelay(IdleTime);
         }
     }
 
