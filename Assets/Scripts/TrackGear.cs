@@ -10,9 +10,23 @@ public class TrackGear : MonoBehaviour
     public float MoveSpeed = 1f;
     public float IdleTime = 1f;
     public bool IsLoop = false;
+
+    public bool IsSwitch = false; //是否可被开关暂停
+
+    private void OnSwitch(bool isOn)
+    {
+        if (isOn) transform.DOPause();
+        else transform.DOPlay();
+    }
+
     void Start()
     {
         MoveForward();
+
+        if (IsSwitch)
+        {
+            GetComponent<SwitchReceiver>().OnSwitch += OnSwitch;
+        }
     }
 
     private void MoveForward()

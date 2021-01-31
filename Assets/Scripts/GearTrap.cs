@@ -5,6 +5,24 @@ using UnityEngine;
 public class GearTrap : MonoBehaviour
 {
 
+    Animator anim;
+    Collider colid;
+    int flagHash = Animator.StringToHash("flag");
+
+    private void Start()
+    {
+        GetComponent<SwitchReceiver>().OnSwitch += OnSwitch;
+        anim = GetComponent<Animator>();
+        colid = GetComponent<Collider>();
+    }
+
+    private void OnSwitch(bool isOn)
+    {
+
+        colid.enabled = !isOn;
+        anim.SetBool(flagHash, isOn);
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {
