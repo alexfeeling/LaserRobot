@@ -44,6 +44,10 @@ namespace Robot
         private void Start()
         {
             Character.MaxStableMoveSpeed = MoveSpeed;
+
+            laserColor = LaserColor.Blue;
+            RaserMat.SetColor("_Color", BlueColor * 4);
+            RaserLine.endWidth = 0.1f;
         }
 
         public void GetRedLaser()
